@@ -80,35 +80,19 @@ LL query(int l, int r, int id, bool f){
 	return f ? query(l, mid, lid, f) + query(mid+1, r, rid, f) : max(query(l, mid, lid, f), query(mid+1, r, rid, f));
 }
 
-template <class T>
-inline bool scan_d(T &ret) {
-    char c;
-    int sgn;
-    if (c = getchar(), c == EOF) return 0;
-    while (c != '-' && (c < '0' || c > '9')) c = getchar();
-    sgn = (c == '-' ? -1 : 1);
-    ret = (c == '-') ? 0 : (c - '0');
-    while (c = getchar(), c >= '0' && c <= '9') ret = ret * 10 + (c - '0');
-    ret *= sgn;
-    return 1;
-}
-
 int main(){
-	freopen("/home/qaqorz/PikaGu/test.txt", "r", stdin);
+	//freopen("/home/qaqorz/PikaGu/test.txt", "r", stdin);
 	int t, n, q;
-	scan_d<int>(t);
+	scanf("%d", &t);
 	while (t--){
-		scan_d<int>(n);
-		scan_d<int>(q);
-		for (int i = 1; i <= n; i++) scan_d<int>(a[i]);
+		scanf("%d%d", &n, &q);
+		for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
 		build(1, n, 1);
 		int op, l, r, x;
 		while (q--){
-			scan_d<int>(op);
-			scan_d<int>(l);
-			scan_d<int>(r);
+			scanf("%d%d%d", &op, &l, &r);
 			if (!op){
-				scan_d<int>(x);
+				scanf("%d", &x);
 				upd(l, r, 1, x);
 			}
 			else if (op == 1) printf("%lld\n", query(l, r, 1, 0));
